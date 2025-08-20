@@ -13,6 +13,14 @@ def derivative (f, x, h):
 
 # newton's method
 def newton_method(f, x_0, TOL):
+    """ Run Newton's method to minimize a function.
+
+    Parameters:
+    x0: starting value
+    f: function
+    TOL: tolerance
+    
+    """
     x = np.array([x_0])
     for t in np.arrange(0, N):
         fp = derivative(f, x[t], h) 
