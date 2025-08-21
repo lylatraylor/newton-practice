@@ -1,11 +1,13 @@
 # packages
 import numpy as np
+from scipy.differentiate import hessian
+from scipy.differentiate import derivative
 
 # get derivatives
-def derivative (f, x, h = 1e-8):
+def deriv (f, x, h = 1e-8):
     return (f(x+h) - f(x)) / h
 
-def derivative_2 (f, x, h = 1e-5):
+def deriv_2 (f, x, h = 1e-5):
     return (derivative(f, x+h, h) - derivative(f, x, h)) / h
 
 # newton's method
@@ -29,16 +31,23 @@ def optimize(x0, f, TOL = 1e-4):
     if not callable(f):
         raise TypeError('f must be callable')
     
-    x_new = x0 - derivative(f, x0)/ derivative_2(f, x0)
+    x_new = x0 - deriv(f, x0)/ deriv_2(f, x0)
     x = x0
     while abs(x_new - x) > TOL:
         x = x_new
-        if derivative_2(f, x) == 0:
+        if deriv_2(f, x) == 0:
             raise ZeroDivisionError("Second derivative is zero- Newton's method fails")
-        x_new = x - derivative(f, x)/ derivative_2(f, x)
+        x_new = x - deriv(f, x)/ deriv_2(f, x)
 
     return {"x": x_new,
             'value': f(x_new)}
+
+
+# multivariate case
+def multivariate():
+    h_matrix = hessian(x0, f)
+    gradient = deriv(f)
+    x_new = [x0] -
 
         
     
