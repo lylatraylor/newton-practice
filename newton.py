@@ -1,4 +1,5 @@
 # packages
+#Hi Lyla!!
 import numpy as np
 from scipy.differentiate import hessian
 from scipy.differentiate import derivative
