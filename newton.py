@@ -8,7 +8,7 @@ def deriv (f, x, h = 1e-8):
     return (f(x+h) - f(x)) / h
 
 def deriv_2 (f, x, h = 1e-5):
-    return (derivative(f, x+h, h) - derivative(f, x, h)) / h
+    return (deriv(f, x+h, h) - deriv(f, x, h)) / h
 
 # newton's method
 def optimize(x0, f, TOL = 1e-4):
@@ -46,7 +46,7 @@ def optimize(x0, f, TOL = 1e-4):
 # multivariate case
 def multivariate():
     h_matrix = hessian(x0, f)
-    gradient = deriv(f)
+    gradient = derivative(f)
     x_new = [x0] -
 
         
